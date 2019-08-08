@@ -1,27 +1,38 @@
 pipeline{
     agent any
-    
+
+    tools{
+      maven 'Maven 3.6.1'
+    }
+
     stages{
         stage('build'){
             steps{
-                echo "This is Build Stage"
-                sleep 5
+                echo "Building worker App..."
+                dir("worker"){
+                  sh 'mvn compile'
+                }
             }
         }
         stage('test'){
             steps{
                 echo "This is Test Stage"
-                sleep 3
+                dir("worker"){
+                  sh 'mvn nclean test'
+                }
             }
         }
         stage('package'){
             steps{
                 echo "This is Package Stage"
-                sleep 10
+                dir("worker"){
+                  sh 'mvn package -DskipTests'
+                  archiveArtifacts artifacts: '**/target/*.jar'
+                }
             }
         }
     }
-    
+
     post{
         always{
             echo "This is test pipeline success"
