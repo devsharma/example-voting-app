@@ -7,7 +7,6 @@ echo "I: Creating environment to run  integration tests..."
 docker-compose build
 docker-compose up -d
 
-
 echo "I: Launching Integration Test ..."
 
 docker-compose run --rm integration /test/test.sh
