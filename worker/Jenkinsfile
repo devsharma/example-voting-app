@@ -1,0 +1,30 @@
+pipeline{
+    agent any
+    
+    stages{
+        stage('build'){
+            steps{
+                echo "This is Build Stage"
+                sleep 5
+            }
+        }
+        stage('test'){
+            steps{
+                echo "This is Test Stage"
+                sleep 3
+            }
+        }
+        stage('package'){
+            steps{
+                echo "This is Package Stage"
+                sleep 10
+            }
+        }
+    }
+    
+    post{
+        always{
+            echo "This is test pipeline success"
+        }
+    }
+}
