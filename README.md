@@ -1,6 +1,6 @@
 Example Voting App
 =========
-
+This is a microservice based app 
 
 
 Getting started
